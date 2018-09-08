@@ -1,0 +1,63 @@
+<% #= javascript_include_tag "new_account" %>
+<% @title = "新規登録" %>
+
+<%= form_for @new_account, url: accounts_path do |f| %>
+
+<% if flash[:form_errors] %>
+  <div class="alert alert-danger">
+    <ul>
+      <% flash[:form_errors].each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<table>
+  <tr>
+    <td><%= t 'activerecord.attributes.account.name' %></td>
+    <td>
+      <%= f.text_field :name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= t 'activerecord.attributes.account.password' %>
+    </td>
+    <td>
+      <%= f.password_field :password %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= t 'activerecord.attributes.account.password' %>の確認
+    </td>
+    <td>
+      <%= f.password_field :password_confirmation %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= t 'activerecord.attributes.account.birthday' %></td>
+    <td>
+     <%= f.date_select :birthday, {use_month_numbers: true, date_separator: "-"}, {class: "js-date-selector"} %>
+    </td>
+  </tr>
+  <tr>
+  <tr>
+    <td><%= t 'activerecord.attributes.account.sex' %></td>
+    <td>
+      <%= f.select :sex, [["男性", "m"], ["女性", "f"]] %>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <%= f.submit "登録" %>
+    </td>
+  </tr>
+</table>
+
+
+<% end %>

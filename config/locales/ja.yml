@@ -1,0 +1,20 @@
+ja:
+  date:
+    order:
+      - year
+      - month
+      - day
+  activerecord:
+    errors:
+      messages:
+        blank: は空白にできません。
+        too_short: が短すぎます。
+            
+    models:
+      account: アカウント
+    attributes:
+      account:
+        name: 名前
+        password: パスワード
+        birthday: 誕生日
+        sex: 性別
