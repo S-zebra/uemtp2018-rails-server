@@ -5,7 +5,7 @@ class Account < ApplicationRecord
   validates :password, presence: true, confirmation: true
   validate :encrypt_password
   has_many :posts
-  has_many :tokens
+  has_many :tokens, dependent: :destroy
 
   def encrypt_password
     self.password = BCrypt::Password.create(self.password)

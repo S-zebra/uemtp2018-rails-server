@@ -9,9 +9,11 @@ Rails.application.routes.draw do
 
   # resources :tokens, only: [:index, :create, :destroy]
 
-  namespace :api do
-    resources :images, only: [:show, :create, :update, :destroy]
-    get "/posts/list", to: "posts#list"
+  namespace :api, {format: "json"} do
+    namespace :v1 do
+      resources :images, only: [:show, :create, :update, :destroy]
+      resources :posts, except: [:new]
+    end
   end
 
   root "accounts#new"
