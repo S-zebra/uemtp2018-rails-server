@@ -1,9 +1,11 @@
 module ApplicationHelper
+  APP_NAME = "つくもっく"
+
   def page_title
     if @title
-      "De.tales - " + @title
+      "#{APP_NAME} - #{@title}"
     else
-      "De.tales"
+      APP_NAME
     end
   end
 end
