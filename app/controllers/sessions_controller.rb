@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if account
       session[:uid] = account.id
       flash[:notice] = "ログインしました。"
-      redirect_to :tokens
+      redirect_to controller: "accounts", action: "show", id: account.id
     else
       flash[:error] = "ログインに失敗しました。再度お試しください。"
       redirect_to action: "new"
