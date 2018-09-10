@@ -1,0 +1,27 @@
+<% @title = "アカウント詳細" %>
+
+<div class="container">
+  <table class="table">
+    <tbody>
+
+      <tr>
+        <th scope="row">
+          名前
+        </th>
+        <td>
+          <%= @account.name %>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row">
+          アクセスキー
+        </th>
+        <td>
+          <%= @token.token %>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
