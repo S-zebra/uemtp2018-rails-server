@@ -4,12 +4,13 @@ ja:
       - year
       - month
       - day
+
   activerecord:
     errors:
       messages:
         blank: は空白にできません。
         too_short: が短すぎます。
-            
+        taken: 欄に入力された値は、すでに使用されています。別の名前をお試しください。
     models:
       account: アカウント
     attributes:
@@ -18,3 +19,9 @@ ja:
         password: パスワード
         birthday: 誕生日
         sex: 性別
+
+  #Views
+  accounts:
+    new:
+      register: 登録
+      error_count: "%{count}件のエラーがあります"
