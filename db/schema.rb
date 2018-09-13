@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_08_035722) do
+ActiveRecord::Schema.define(version: 2018_09_13_050312) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
@@ -37,8 +37,15 @@ ActiveRecord::Schema.define(version: 2018_09_08_035722) do
     t.index ["post_id"], name: "index_post_images_on_post_id"
   end
 
-# Could not dump table "posts" because of following StandardError
-#   Unknown type 'longitude' for column 'longtitude'
+  create_table "posts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.float "latitude", default: -1.0, null: false
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "longitude", default: -1.0, null: false
+    t.index ["account_id"], name: "index_posts_on_account_id"
+  end
 
   create_table "tokens", force: :cascade do |t|
     t.integer "account_id", null: false
