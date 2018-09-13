@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root "sessions#new"
+  root "accounts#new"
 end
