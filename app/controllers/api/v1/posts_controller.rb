@@ -3,7 +3,7 @@ class Api::V1::PostsController < ApiController
     if params[:lat] && params[:lon]
       lat = params[:lat].to_f
       lon = params[:lon].to_f
-      @posts = Post.where(latitude: lat - 1..lat + 1, longitude: lon - 1..lon + 1)
+      @posts = Post.where(latitude: lat - 1..lat + 1, longtitude: lon - 1..lon + 1)
     else
       @posts = Post.all
     end
@@ -19,7 +19,7 @@ class Api::V1::PostsController < ApiController
     post = Post.new(
       account: @account,
       latitude: json["lat"],
-      longitude: json["lon"],
+      longtitude: json["lon"],
       text: json["text"],
     )
     p json
