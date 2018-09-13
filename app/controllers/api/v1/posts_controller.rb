@@ -1,9 +1,12 @@
 class Api::V1::PostsController < ApiController
   def index
-    raise ArgumentError.new("lat and lon must be given") unless params[:lat] && params[:lon]
-    lat = params[:lat]
-    lon = params[:lon]
-    @posts = Post.where(latitude: lat, longtitude: lon)
+    if params[:lat] && params[:lon]
+      lat = params[:lat].to_f
+      lon = params[:lon].to_f
+      @posts = Post.where(latitude: lat - 1..lat + 1, longtitude: lon - 1..lon + 1)
+    else
+      @posts = Post.all
+    end
   end
 
   def show
@@ -12,6 +15,19 @@ class Api::V1::PostsController < ApiController
 
   #じぇーそん受け取り処理
   def create
-    render json: JSON.parse(request.body).to_h
+    json = JSON.parse(request.body.read)
+    post = Post.new(
+      account: @account,
+      latitude: json["lat"],
+      longtitude: json["lon"],
+      text: json["text"],
+    )
+    p json
+    if post.save
+      render json: {status: 200, message: "OK"}
+    else
+      errors = post.errors.full_messages
+      render json: {status: 400, message: "Post is invalid", detailMessages: errors}, status: 400
+    end
   end
 end
