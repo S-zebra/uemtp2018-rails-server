@@ -1,0 +1,9 @@
+<script type = "text/javascript" >
+  window.addEventListener("load", function (e) {
+    location.replace("tmokku://login/redirect?token=" + document.getElementById("token").value);
+  }, false); 
+</script>
+<h2>Redirecting...</h2>
+<form action="">
+  <input type="hidden" id="token" value="<%= @token %>">
+</form>

@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
     if @new_account.save && @new_token.save
       flash[:notice] = "アカウントが登録されました"
       session[:uid] = @new_account.id
-      redirect_to action: "show", id: @new_account.id
+      @token = @new_account.tokens.first.token
     else
       flash[:form_errors] = @new_account.errors.full_messages
       redirect_to action: "new"
