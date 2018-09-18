@@ -6,6 +6,10 @@ class AccountsController < ApplicationController
   end
 
   def new
+    if session[:uid]
+      @token = Account.find_by(session[:uid]).tokens.first.token
+      render template: "accounts/create"
+    end
     @new_account = @new_account || Account.new
   end
 
