@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_050312) do
+ActiveRecord::Schema.define(version: 2018_10_23_035426) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2018_09_13_050312) do
     t.string "path", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.float "latitude", default: -1.0, null: false
+    t.float "longitude", default: -1.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_locations_on_account_id"
   end
 
   create_table "post_images", force: :cascade do |t|

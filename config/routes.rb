@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :images, only: [:show, :create, :update, :destroy]
       resources :posts, except: [:new]
+      resources :locations, only: [:index, :create]
       get "/accounts/available", to: "accounts#available?"
     end
   end

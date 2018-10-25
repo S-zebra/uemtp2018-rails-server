@@ -6,6 +6,7 @@ class Account < ApplicationRecord
   validate :encrypt_password
   has_many :posts
   has_many :tokens, dependent: :destroy
+  has_many :locations, dependent: :destroy
 
   def encrypt_password
     self.password = BCrypt::Password.create(self.password)
