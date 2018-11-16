@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :posts, except: [:new]
       resources :locations, only: [:index, :create]
       get "/accounts/available", to: "accounts#available?"
+      post "/posts/locations", to: "posts#add_location"
     end
   end
 

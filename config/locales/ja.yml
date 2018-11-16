@@ -10,17 +10,19 @@ ja:
       messages:
         blank: は空白にできません。
         too_short: が短すぎます。
-        taken: 欄に入力された値は、すでに使用されています。別の名前をお試しください。
+        taken: 欄に入力された値は、すでに使用されています。別の値をお試しください。
         not_a_number: は数字である必要があります。
+        required: が必要です。
+        invalid: が正しくありません。
     models:
       account: アカウント
+      location: 位置情報
     attributes:
       account:
         name: 名前
         password: パスワード
         birthday: 誕生日
         sex: 性別
-    
 
   #Views
   accounts:

@@ -13,6 +13,24 @@ class Api::V1::PostsController < ApiController
     #@post = Post.find()
   end
 
+  def add_location
+    authenticate
+    json = JSON.parse(request.body.read)
+    location = Location.new(
+      account: @account,
+      latitude: json["lat"],
+      longitude: json["lon"],
+      post: Post.find(json["id"].to_i),
+    )
+    if location.save
+      render json: {status: 200, message: "OK"}
+    else
+      errors = location.errors.full_messages
+      p errors
+      render json: {status: 400, message: "Location is invalid", detailMessages: errors}, status: 400
+    end
+  end
+
   #じぇーそん受け取り処理
   def create
     json = JSON.parse(request.body.read)
@@ -27,6 +45,7 @@ class Api::V1::PostsController < ApiController
       render json: {status: 200, message: "OK"}
     else
       errors = post.errors.full_messages
+      puts errors
       render json: {status: 400, message: "Post is invalid", detailMessages: errors}, status: 400
     end
   end

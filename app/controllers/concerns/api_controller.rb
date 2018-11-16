@@ -17,7 +17,7 @@ class ApiController < ActionController::Base
   def authenticate
     token = request.headers[:HTTP_API_TOKEN]
     puts("HTTP_API_TOKEN: #{token}")
-    p request.headers
+    # p request.headers
     @account = Token.find_by!(token: token).account
   end
 end
