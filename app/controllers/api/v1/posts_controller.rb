@@ -10,7 +10,13 @@ class Api::V1::PostsController < ApiController
   end
 
   def show
-    #@post = Post.find()
+    # authenticate
+    begin
+      @posts = [Post.find(params[:id])]
+      render template: "api/v1/posts/index"
+    rescue ActiveRecord::RecordNotFound
+      render json: {status: 404, message: "No such post"}, status: 404
+    end
   end
 
   def add_location
@@ -34,11 +40,20 @@ class Api::V1::PostsController < ApiController
   #じぇーそん受け取り処理
   def create
     json = JSON.parse(request.body.read)
+    rep_to = nil
+    if json["parentId"]
+      begin
+        rep_to = Post.find(json["parentId"].to_i)
+      rescue ActiveRecord::RecordNotFound
+        puts "Can't find post with id = #{json["parentId"]}"
+      end
+    end
     post = Post.new(
       account: @account,
       latitude: json["lat"],
       longitude: json["lon"],
       text: json["text"],
+      parent: rep_to,
     )
     p json
     if post.save

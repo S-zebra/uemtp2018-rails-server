@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_140219) do
+ActiveRecord::Schema.define(version: 2018_11_18_132412) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
@@ -55,7 +55,9 @@ ActiveRecord::Schema.define(version: 2018_11_15_140219) do
     t.datetime "updated_at", null: false
     t.float "latitude", default: -999.0, null: false
     t.float "longitude", default: -999.0, null: false
+    t.integer "post_id"
     t.index ["account_id"], name: "index_posts_on_account_id"
+    t.index ["post_id"], name: "index_posts_on_post_id"
   end
 
   create_table "tokens", force: :cascade do |t|
