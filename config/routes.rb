@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :locations, only: [:index, :create]
       get "/accounts/available", to: "accounts#available?"
       post "/posts/locations", to: "posts#add_location"
+      get "/count", to: "posts#count"
     end
   end
 

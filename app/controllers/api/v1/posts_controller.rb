@@ -9,6 +9,15 @@ class Api::V1::PostsController < ApiController
     end
   end
 
+  def count
+    # authenticate
+    msg = ""
+    Account.all.each do |acc|
+      msg << "#{acc.name}: #{Post.where(account: acc).length}\n"
+    end
+    render plain: msg
+  end
+
   def show
     # authenticate
     begin
