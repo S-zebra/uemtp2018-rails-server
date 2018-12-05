@@ -22,7 +22,7 @@ class Api::V1::PostsController < ApiController
     authenticate
     res = ""
     Post.all.each do |p|
-      res << "#{p.id},#{p.account.name},#{p.latitude},#{p.longitude},#{p.text},#{p.created_at}\n"
+      res << "#{p.id},#{p.account.name},#{p.latitude},#{p.longitude},\"#{p.text}\",#{p.created_at.in_time_zone("Asia/Tokyo")}\n"
     end
     render plain: res
   end
