@@ -18,6 +18,15 @@ class Api::V1::PostsController < ApiController
     render plain: msg
   end
 
+  def dump
+    authenticate
+    res = ""
+    Post.all.each do |p|
+      res << "#{p.id},#{p.account.name},#{p.latitude},#{p.longitude},#{Base64.strict_encode64(p.text)},#{p.created_at}\n"
+    end
+    render plain: res
+  end
+
   def show
     # authenticate
     begin

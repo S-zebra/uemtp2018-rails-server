@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get "/accounts/available", to: "accounts#available?"
       post "/posts/locations", to: "posts#add_location"
       get "/count", to: "posts#count"
+      get "/dump", to: "posts#dump"
     end
   end
 
