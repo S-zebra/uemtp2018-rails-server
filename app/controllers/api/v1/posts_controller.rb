@@ -5,10 +5,10 @@ class Api::V1::PostsController < ApiController
       lon = params[:lon].to_f
       limit = params[:limit]
       @posts = Post.where(latitude: lat - 1..lat + 1, longitude: lon - 1..lon + 1)
-      @posts.limit!(limit) if limit
     else
       @posts = Post.all
     end
+    @posts.limit!(limit) if limit
   end
 
   def count
