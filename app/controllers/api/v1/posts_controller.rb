@@ -20,8 +20,21 @@ class Api::V1::PostsController < ApiController
 
   def dump
     authenticate
+    posts = Post.all
+    if params[:lat1] && params[:lat2]
+      lat_range = params[:lat1]..params[:lat2]
+      posts.where!(lat: lat_range)
+    end
+    if params[:lon1] && params[:lon2]
+      lon_range = params[:lon1]..params[:lon2]
+      posts.where!(lon: lon_range)
+    end
+    if params[:user]
+      user = Account.find_by(name: params[:user])
+      posts.where!(account: account)
+    end
     res = ""
-    Post.all.each do |p|
+    posts.each do |p|
       res << "#{p.id},#{p.account.name},#{p.latitude},#{p.longitude},\"#{p.text}\",#{p.created_at.in_time_zone("Asia/Tokyo")}\n"
     end
     render plain: res
