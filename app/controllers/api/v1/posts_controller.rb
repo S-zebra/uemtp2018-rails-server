@@ -4,6 +4,8 @@ class Api::V1::PostsController < ApiController
       lat = params[:lat].to_f
       lon = params[:lon].to_f
       @posts = Post.where(latitude: lat - 1..lat + 1, longitude: lon - 1..lon + 1)
+    elsif (params[:lat1] && params[:lat2]) && (params[:lon1] && params[:lon2])
+      @posts = Post.where(latitude: params[:lat1].to_f..params[:lat2].to_f, longitude: params[:lon1].to_f..params[:lon2].to_f)
     else
       @posts = Post.all
     end
