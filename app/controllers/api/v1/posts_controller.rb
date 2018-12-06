@@ -3,11 +3,11 @@ class Api::V1::PostsController < ApiController
     if params[:lat] && params[:lon]
       lat = params[:lat].to_f
       lon = params[:lon].to_f
-      limit = params[:limit]
       @posts = Post.where(latitude: lat - 1..lat + 1, longitude: lon - 1..lon + 1)
     else
       @posts = Post.all
     end
+    limit = params[:limit]
     @posts.limit!(limit) if limit
   end
 
