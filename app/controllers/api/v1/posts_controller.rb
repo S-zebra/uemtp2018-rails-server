@@ -7,8 +7,12 @@ class Api::V1::PostsController < ApiController
     else
       @posts = Post.all
     end
-    limit = params[:limit]
-    @posts.limit!(limit) if limit
+    @posts.limit!(params[:limit]) if params[:limit].to_i > 0
+    begin
+      @posts.order!("#{params[:order]} #{"DESC" if ["1", "true"].include?(params[:desc])}") if params[:order]
+    rescue
+      puts "No such column: #{params[:order]}"
+    end
   end
 
   def count
