@@ -6,4 +6,5 @@
 <h2>Redirecting...</h2>
 <form action="">
   <input type="hidden" id="token" value="<%= @token %>">
+  <%= link_to  "Go to App", "tmokku://login/redirect?token=#{@token}" %>
 </form>
