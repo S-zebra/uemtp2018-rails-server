@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
   validates :name, :password, :birthday, presence: true
   validates :name, uniqueness: true
-  validates :name, length: {in: 2..10}
+  validates :name, length: {in: 2..20, message: "は2〜20文字にしてください"}
   validates :password, presence: true, confirmation: true
   validate :encrypt_password
   has_many :posts
