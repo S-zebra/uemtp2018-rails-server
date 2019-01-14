@@ -48,7 +48,8 @@
       <td><%= t 'activerecord.attributes.account.birthday' %></td>
       <div class="form-group">
       <td>
-      <%= f.date_select :birthday, {use_month_numbers: true, date_separator: "-"}, {class: "js-date-selector"} %>
+      <% today = Date.today%>
+      <%= f.date_select :birthday, {start_year: today.year - 120, end_year: today.year, use_month_numbers: true, date_separator: "-"}, {class: "js-date-selector"} %>
       </td>
       </div>
     </tr>
