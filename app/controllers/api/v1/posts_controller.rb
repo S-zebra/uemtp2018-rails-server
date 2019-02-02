@@ -84,11 +84,11 @@ class Api::V1::PostsController < ApiController
   def create
     json = JSON.parse(request.body.read)
     rep_to = nil
-    if json["parentId"]
+    if json["parent"]
       begin
         rep_to = Post.find(json["parent"].to_i)
       rescue ActiveRecord::RecordNotFound
-        puts "Can't find post with id = #{json["parentId"]}"
+        puts "Can't find post with id = #{json["parent"]}"
       end
     end
     post = Post.new(
