@@ -53,6 +53,9 @@ class Api::V1::PostsController < ApiController
     # authenticate
     begin
       @posts = [Post.find(params[:id])]
+      while @posts.last.parent
+        @posts << Post.find(@posts.last.parent)
+      end
       render template: "api/v1/posts/index"
     rescue ActiveRecord::RecordNotFound
       render json: {status: 404, message: "No such post"}, status: 404
