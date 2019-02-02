@@ -54,7 +54,7 @@ class Api::V1::PostsController < ApiController
     begin
       @posts = [Post.find(params[:id])]
       while @posts.last.parent
-        @posts << Post.find(@posts.last.parent)
+        @posts << Post.find(@posts.last.parent.id)
       end
       render template: "api/v1/posts/index"
     rescue ActiveRecord::RecordNotFound
