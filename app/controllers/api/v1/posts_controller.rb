@@ -86,7 +86,7 @@ class Api::V1::PostsController < ApiController
     rep_to = nil
     if json["parentId"]
       begin
-        rep_to = Post.find(json["parentId"].to_i)
+        rep_to = Post.find(json["parent"].to_i)
       rescue ActiveRecord::RecordNotFound
         puts "Can't find post with id = #{json["parentId"]}"
       end
