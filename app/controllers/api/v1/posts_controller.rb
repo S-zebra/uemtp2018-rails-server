@@ -53,7 +53,7 @@ class Api::V1::PostsController < ApiController
     # authenticate
     begin
       # @posts = [Post.find(params[:id])]
-      @post = Post.find(params[:id])
+      @post = [Post.find(params[:id])]
       # while @posts.last.parent
       #   @posts << Post.find(@posts.last.parent.id)
       # end

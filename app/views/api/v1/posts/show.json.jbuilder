@@ -1,11 +1,11 @@
-json.result do
-  json.id @post.id
-  json.latitude @post.latitude
-  json.longitude @post.longitude
-  json.parent @post.parent ? @post.parent.id : -1
-  json.text @post.text
+json.result @post do |p|
+  json.id p.id
+  json.latitude p.latitude
+  json.longitude p.longitude
+  json.parent p.parent ? p.parent.id : -1
+  json.text p.text
 
-  json.locations @post.location do |l|
+  json.locations p.location do |l|
     json.latitude l.latitude
     json.longitude l.longitude
     json.createdAt l.created_at
